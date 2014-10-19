@@ -27,9 +27,11 @@ import com.qualcomm.vuforia.TrackableResult;
 import com.qualcomm.vuforia.VIDEO_BACKGROUND_REFLECTION;
 import com.qualcomm.vuforia.Vuforia;
 import com.qualcomm.vuforia.samples.SampleApplication.SampleApplicationSession;
+import com.qualcomm.vuforia.samples.SampleApplication.utils.CubeObject;
 import com.qualcomm.vuforia.samples.SampleApplication.utils.CubeShaders;
 import com.qualcomm.vuforia.samples.SampleApplication.utils.LoadingDialogHandler;
 import com.qualcomm.vuforia.samples.SampleApplication.utils.Mushroom;
+import com.qualcomm.vuforia.samples.SampleApplication.utils.QuadMesh;
 import com.qualcomm.vuforia.samples.SampleApplication.utils.SampleApplication3DModel;
 import com.qualcomm.vuforia.samples.SampleApplication.utils.SampleUtils;
 import com.qualcomm.vuforia.samples.SampleApplication.utils.Teapot;
@@ -59,7 +61,9 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
     private int texSampler2DHandle;
     
 //    private Teapot mTeapot;
-    private Mushroom mShroom;
+//    private Mushroom mShroom;
+    private CubeObject mQuadMesh;
+    
     
     private float kBuildingScale = 2.0f;
     private SampleApplication3DModel mBuildingsModel;
@@ -119,7 +123,7 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
     // Function for initializing the renderer.
     private void initRendering()
     {
-        mShroom = new Mushroom();
+        mQuadMesh = new CubeObject();
         
         mRenderer = Renderer.getInstance();
         
@@ -230,11 +234,11 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
             if (!mActivity.isExtendedTrackingActive())
             {
                 GLES20.glVertexAttribPointer(vertexHandle, 3, GLES20.GL_FLOAT,
-                    false, 0, mShroom.getVertices());
+                    false, 0, mQuadMesh.getVertices());
                 GLES20.glVertexAttribPointer(normalHandle, 3, GLES20.GL_FLOAT,
-                    false, 0, mShroom.getNormals());
+                    false, 0, mQuadMesh.getNormals());
                 GLES20.glVertexAttribPointer(textureCoordHandle, 2,
-                    GLES20.GL_FLOAT, false, 0, mShroom.getTexCoords());
+                    GLES20.GL_FLOAT, false, 0, mQuadMesh.getTexCoords());
                 
                 GLES20.glEnableVertexAttribArray(vertexHandle);
                 GLES20.glEnableVertexAttribArray(normalHandle);
@@ -252,8 +256,8 @@ public class ImageTargetRenderer implements GLSurfaceView.Renderer
                 
                 // finally draw the teapot
                 GLES20.glDrawElements(GLES20.GL_TRIANGLES,
-                    mShroom.getNumObjectIndex(), GLES20.GL_UNSIGNED_SHORT,
-                    mShroom.getIndices());
+                    mQuadMesh.getNumObjectIndex(), GLES20.GL_UNSIGNED_SHORT,
+                    mQuadMesh.getIndices());
                 
                 // disable the enabled arrays
                 GLES20.glDisableVertexAttribArray(vertexHandle);

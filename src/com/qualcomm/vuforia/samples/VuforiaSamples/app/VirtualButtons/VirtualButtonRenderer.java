@@ -71,6 +71,15 @@ public class VirtualButtonRenderer implements GLSurfaceView.Renderer
     
     // Constants:
     static private float kTeapotScale = 3.f;
+        
+    public static void increaseScale() {
+    	kTeapotScale++;
+    }
+    
+    public static void decreaseScale() {
+    	kTeapotScale++;	
+    }
+    
     
     
     public VirtualButtonRenderer(VirtualButtons activity,

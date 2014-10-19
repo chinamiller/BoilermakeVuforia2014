@@ -9,6 +9,7 @@ package com.qualcomm.vuforia.samples.VuforiaSamples.app.VirtualButtons;
 
 import java.util.Vector;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -224,7 +225,7 @@ public class VirtualButtons extends Activity implements
     
     
     // Called when the system is about to start resuming a previous activity.
-    @Override
+    @SuppressLint("NewApi") @Override
     protected void onPause()
     {
         Log.d(LOGTAG, "onPause");
@@ -528,6 +529,8 @@ public class VirtualButtons extends Activity implements
                 
                 toggleVirtualButton(imageTarget, virtualButtonColors[0],
                     -108.68f, -53.52f, -75.75f, -65.87f);
+                VirtualButtonRenderer.increaseScale();
+                System.out.println("increase");
                 
             }
             if ((buttonMask & BUTTON_2) != 0)
@@ -536,6 +539,8 @@ public class VirtualButtons extends Activity implements
                 
                 toggleVirtualButton(imageTarget, virtualButtonColors[1],
                     -45.28f, -53.52f, -12.35f, -65.87f);
+                VirtualButtonRenderer.decreaseScale();
+                System.out.println("decrease");
             }
             if ((buttonMask & BUTTON_3) != 0)
             {
@@ -729,7 +734,7 @@ public class VirtualButtons extends Activity implements
     }
     
     
-    @Override
+    @SuppressLint("NewApi") @Override
     public boolean menuProcess(int command)
     {
         boolean result = true;
@@ -824,10 +829,12 @@ public class VirtualButtons extends Activity implements
             
             case CMD_BUTTON_RED:
                 addButtonToToggle(0);
+                VirtualButtonRenderer.increaseScale();
                 break;
             
             case CMD_BUTTON_BLUE:
                 addButtonToToggle(1);
+                VirtualButtonRenderer.decreaseScale();
                 break;
             
             case CMD_BUTTON_YELLOW:

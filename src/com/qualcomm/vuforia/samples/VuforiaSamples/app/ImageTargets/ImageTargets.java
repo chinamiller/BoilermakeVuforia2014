@@ -60,9 +60,9 @@ import com.qualcomm.vuforia.samples.VuforiaSamples.ui.SampleAppMenu.SampleAppMen
     SampleApplicationSession vuforiaAppSession;
     
     private DataSet mCurrentDataset;
-    private int mCurrentDatasetSelectionIndex = 0;
-    private int mStartDatasetsIndex = 0;
-    private int mDatasetsNumber = 0;
+    private int mCurrentDatasetSelectionIndex = 2;
+    private int mStartDatasetsIndex = 2;
+    private int mDatasetsNumber = 2;
     private ArrayList<String> mDatasetStrings = new ArrayList<String>();
     
     // Our OpenGL view:
@@ -79,7 +79,7 @@ import com.qualcomm.vuforia.samples.VuforiaSamples.ui.SampleAppMenu.SampleAppMen
     private boolean mSwitchDatasetAsap = false;
     private boolean mFlash = false;
     private boolean mContAutofocus = false;
-    private boolean mExtendedTracking = false;
+    private boolean mExtendedTracking = true;
     
     private View mFlashOptionView;
     
@@ -605,9 +605,9 @@ import com.qualcomm.vuforia.samples.VuforiaSamples.ui.SampleAppMenu.SampleAppMen
         mStartDatasetsIndex = CMD_DATASET_START_INDEX;
         mDatasetsNumber = mDatasetStrings.size();
         
-        group.addRadioItem("Stones & Chips", mStartDatasetsIndex, true);
+        group.addRadioItem("Stones & Chips", mStartDatasetsIndex, false);
         group.addRadioItem("Tarmac", mStartDatasetsIndex + 1, false);
-        group.addRadioItem("Marty", mStartDatasetsIndex + 2, false);
+        group.addRadioItem("Marty", mStartDatasetsIndex + 2, true);
 
         
         mSampleAppMenu.attachMenu();
